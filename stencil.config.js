@@ -1,5 +1,7 @@
+const sass = require('@stencil/sass');
+
 exports.config = {
-  namespace: 'mycomponent',
+  namespace: 'chatbob',
   outputTargets:[
     { 
       type: 'dist' 
@@ -8,6 +10,9 @@ exports.config = {
       type: 'www',
       serviceWorker: false
     }
+  ],
+  plugins: [
+    sass()
   ]
 };
 

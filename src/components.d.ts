@@ -23,37 +23,42 @@ declare global {
   interface HTMLAttributes {}
 }
 
+import {
+  Message,
+} from './models/message-model';
 
 declare global {
 
   namespace StencilComponents {
-    interface MyComponent {
-      'first': string;
-      'last': string;
+    interface ChatBob {
+      'callback': (message: Message) => void;
+      'getMessages': () => Message[];
+      'name': string;
+      'scrollToBottom': () => void;
     }
   }
 
-  interface HTMLMyComponentElement extends StencilComponents.MyComponent, HTMLStencilElement {}
+  interface HTMLChatBobElement extends StencilComponents.ChatBob, HTMLStencilElement {}
 
-  var HTMLMyComponentElement: {
-    prototype: HTMLMyComponentElement;
-    new (): HTMLMyComponentElement;
+  var HTMLChatBobElement: {
+    prototype: HTMLChatBobElement;
+    new (): HTMLChatBobElement;
   };
   interface HTMLElementTagNameMap {
-    'my-component': HTMLMyComponentElement;
+    'chat-bob': HTMLChatBobElement;
   }
   interface ElementTagNameMap {
-    'my-component': HTMLMyComponentElement;
+    'chat-bob': HTMLChatBobElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      'my-component': JSXElements.MyComponentAttributes;
+      'chat-bob': JSXElements.ChatBobAttributes;
     }
   }
   namespace JSXElements {
-    export interface MyComponentAttributes extends HTMLAttributes {
-      'first'?: string;
-      'last'?: string;
+    export interface ChatBobAttributes extends HTMLAttributes {
+      'callback'?: (message: Message) => void;
+      'name'?: string;
     }
   }
 }
